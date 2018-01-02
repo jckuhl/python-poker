@@ -59,7 +59,7 @@ class Card:
         return self.value + other
 
     def __eq__(self, other):
-        return self.value == other
+        return self.value == other and self.suit.value == other
 
     def __gt__(self, other):
         return self.value > other
@@ -86,12 +86,36 @@ class Card:
             else:
                 value = "Ace"
         return "|{} of {}|".format(value, self.suit.value)
+
+    def __int__(self):
+        """
+        Returns the value of the card in the format 1002
+        Where the 1000's place is the suit (1000-4000)
+        And the number is the face value of the card
+        So 1002 would be the Deuce of Hearts
+        4014 would be the Ace of Spades
+        :return:
+        """
+        if self.suit == Suit.HEARTS:
+            return self.value + 1000
+        elif self.suit == Suit.CLUBS:
+            return self.value + 2000
+        elif self.suit == Suit.DIAMONDS:
+            return self.value + 3000
+        else:
+            return self.value + 4000
+
+    def __iter__(self):
+        pass
     
 
 class Deck:
 
     """
     Class for a deck of cards
+    Kept generic, so it can be a standard 52 card deck
+    Or a Pinochle deck
+    Or whatever else you want.
     """
 
     def __init__(self, size):
@@ -109,14 +133,6 @@ class Deck:
         for card in self.deck_cards:
             deck_str += str(card)
         print(deck_str)
-
-    def create_hand(self, size):
-        hand = Hand(size)
-        hand.cards = random.sample(self.deck_cards, k=size)
-        for card in hand.cards:
-            self.deck_cards.remove(card)
-        self.log_deck()
-        return hand
 
     def log_deck(self):
         """
@@ -150,14 +166,20 @@ class Hand:
         return self.cards
 
     def create_hand(self, deck):
-        self.cards = random.sample(deck.deck_cards, k=self.size)
-        for card in self.cards:
-            card_value = card.value
-            card_suit = card.suit.value
-            for deck_card in deck.deck_cards:
-                if deck_card.value == card_value and deck_card.suit.value == card_suit:
-                    index = deck.deck_cards.index(deck_card)
-                    del deck.deck_cards[index]
+        """
+        Creates a hand of cards of size self.size.
+        If self.size is greater than the number of cards in the deck,
+        it just takes the remaining cards in the deck.
+
+        Thanks to /u/Zigity_Zagity from r/learnpython
+        :param deck:  takes a Deck() object
+        :return: self.cards
+        """
+        try:
+            self.cards = random.sample(deck.deck_cards, k=self.size)
+        except ValueError:
+            self.cards = random.sample(deck.deck_cards, k=len(deck.deck_cards))
+        deck.deck_cards = [card for card in deck.deck_cards if card not in self.cards]
         deck.log_deck()
         return self.cards
 
@@ -172,7 +194,4 @@ class Hand:
 
     def draw_card(self, deck):
         card = random.sample(deck.deck_cards, k=1)
-        self.cards.append(card)
-
-    def __iter__(self):
-        pass
+        self.cards.append(card[0])

@@ -1,7 +1,10 @@
 INFO:root:Deck cards: 47
 INFO:root:|2 of Hearts| |
+INFO:root:|3 of Hearts| |
+INFO:root:|4 of Hearts| |
 INFO:root:|5 of Hearts| |
 INFO:root:|7 of Hearts| |
+INFO:root:|8 of Hearts| |
 INFO:root:|9 of Hearts| |
 INFO:root:|10 of Hearts| |
 INFO:root:|Jack of Hearts| |
@@ -9,7 +12,6 @@ INFO:root:|Queen of Hearts| |
 INFO:root:|King of Hearts| |
 INFO:root:|Ace of Hearts| |
 INFO:root:|2 of Clubs| |
-INFO:root:|4 of Clubs| |
 INFO:root:|5 of Clubs| |
 INFO:root:|6 of Clubs| |
 INFO:root:|7 of Clubs| |
@@ -24,7 +26,6 @@ INFO:root:|2 of Diamonds| |
 INFO:root:|3 of Diamonds| |
 INFO:root:|4 of Diamonds| |
 INFO:root:|5 of Diamonds| |
-INFO:root:|6 of Diamonds| |
 INFO:root:|7 of Diamonds| |
 INFO:root:|8 of Diamonds| |
 INFO:root:|9 of Diamonds| |
@@ -35,7 +36,6 @@ INFO:root:|King of Diamonds| |
 INFO:root:|Ace of Diamonds| |
 INFO:root:|2 of Spades| |
 INFO:root:|3 of Spades| |
-INFO:root:|4 of Spades| |
 INFO:root:|5 of Spades| |
 INFO:root:|6 of Spades| |
 INFO:root:|7 of Spades| |
@@ -46,5 +46,5 @@ INFO:root:|Jack of Spades| |
 INFO:root:|Queen of Spades| |
 INFO:root:|King of Spades| |
 INFO:root:|Ace of Spades| |
-INFO:root:Hearts: 9, Clubs: 12, Diamonds: 13, Spades: 13
+INFO:root:Hearts: 12, Clubs: 11, Diamonds: 12, Spades: 12
 INFO:root:********************

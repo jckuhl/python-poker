@@ -12,7 +12,9 @@ class FiveCardPokerHand(Hand):
 
 
 class FiftyTwoDeck(Deck):
-
+    """
+    A standard 52 card deck.
+    """
     def __init__(self):
         super().__init__(size=52)
         card_suit = 1
@@ -47,13 +49,27 @@ class Player:
         return self.hand.score_hand()
 
 
-def game_loop():
-    five_card_stud1 = FiveCardPokerHand()
-    five_card_stud2 = FiveCardPokerHand()
-    fifty_two = FiftyTwoDeck()
-    player = Player(1000, five_card_stud1)
-    player.hand.create_hand(fifty_two)
-    player.hand.show_hand()
+class FiveCardStud:
+    pass
+
+
+class GameApplication:
+
+    def __init__(self, players, game_type):
+        self.players = players
+        self.game_type = game_type
+        self.game_type()
+
+    @staticmethod
+    def game_loop():
+        five_card_stud1 = FiveCardPokerHand()
+        five_card_stud2 = FiveCardPokerHand()
+        fifty_two = FiftyTwoDeck()
+        player = Player(1000, five_card_stud1)
+        player.hand.create_hand(fifty_two)
+        player.hand.show_hand()
+
 
 if __name__ == "__main__":
-    game_loop()
+    poker = GameApplication(2, FiveCardStud)
+    poker.game_loop()
